@@ -7,5 +7,5 @@ gg.refineNumber('-257~~256',4)
 if gg.getResultsCount() <= 0 then
   x.r('ms1', 'Ticket1[1]')
 end
-b[5]=gg.getResults(4,gg.getResultsCount()-4)
-gg.clearResults()
+return gg.getResults(4,gg.getResultsCount()-4)
+
