@@ -8,13 +8,12 @@ end
 for i = 1, #res do
   gg.clearResults()
   gg.searchNumber(('-257~256;'):rep(3)..('-257~~256;'):rep(3)..('-257~~256::25'),4,false,2^29,res[i].address-0x7ff,res[i].address-0x300)
-  local v = gg.getResults(gg.getResultsCount())
-  if #v >= 1 then
+  if gg.getResultsCount() >= 1 then
     break
   end
 end
-if #v<=0 then
+if gg.getResultsCount()<=0 then
   x.r('m4','b[17]_2')
 end
-return v[1]
+return gg.getResults(1)[1]
 
