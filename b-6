@@ -1,0 +1,19 @@
+gg.clearResults()
+gg.searchNumber(('-255~255;')..('-255~~255;'):rep(8)..'-255~255::37',4,false,2^29,base-0xffff,base-0x7000)
+gg.refineNumber('-255~~255',4)
+local v = gg.getResults(gg.getResultsCount())
+if #v<=0 then
+  x.r('ms1','Ticket2[1]')
+end
+local v0=nil
+for i = 1, #v/8 do
+  if gg.getResults(1,(i-1)*8)[1].value ~= -1 then
+    v0 = gg.getResults(8,(i-1)*8)
+    break
+  end
+end
+gg.clearResults()
+if not v0 then
+  x.r('ms1','Ticket2[2]')
+end
+return v0
