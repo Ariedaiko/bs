@@ -1,5 +1,6 @@
 gg.clearResults()
-gg.searchNumber(('-255~255;')..('-255~~255;'):rep(8)..('1')..(';-255~~255'):rep(4)..'::53',4,false,2^29,base-0xffff,base-0x7000)gg.refineNumber('-255~~255',4)
+gg.searchNumber(('-255~255;')..('-255~~255;'):rep(8)..('1')..(';-255~~255'):rep(4)..'::53',4,false,2^29,base-0xffff,base-0x7000)
+gg.refineNumber('-255~~255',4)
 if gg.getResultsCount()<=0 then
   x.r('ms1','Ticket2[1]')
 end
