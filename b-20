@@ -1,0 +1,18 @@
+
+gg.searchNumber('0'..(';-1~148'):rep(63)..'::253',4,false,2^29,base+0x3A0000,base+0x3E0000)
+gg.refineNumber('0',4,false,2^28)
+local res = gg.getResults(gg.getResultsCount())
+local v1 = (function()
+  for i = 1, #res//64 do
+    gg.clearResults()
+    gg.searchNumber('-1~148;0::5',4,false,2^29,res[i*64+1].address+0x100,res[i*64+1].address+0x420)
+    if gg.getResultsCount()>=1 then
+      if gg.getResults(1)[1].value ~= 0 then
+        return gg.getResults(gg.getResultsCount())
+      end
+    end
+  end
+end)()
+gg.clearResults()
+gg.searchNumber('-1~148',4,false,2^29,v1[1].address-0x3FC,v1[1].address)
+return gg.getResults(gg.getResultsCount())
