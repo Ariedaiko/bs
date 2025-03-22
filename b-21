@@ -5,7 +5,7 @@ local res = gg.getResults(gg.getResultsCount())
 local v1 = (function()
   for i = 1, #res//64 do
     gg.clearResults()
-    gg.searchNumber('-1~148;0::5',4,false,2^29,res[i*64+1].address+0x100,res[i*64+1].address+0x420)
+    gg.searchNumber('-1;-257~256;0::9',4,false,2^29,res[i*64+1].address+0x100,res[i*64+1].address+0x420)
     if gg.getResultsCount()>=1 then
       if gg.getResults(1)[1].value ~= 0 then
         return gg.getResults(gg.getResultsCount())
