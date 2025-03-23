@@ -18,5 +18,5 @@ local v1 = (function()
   end
 end)()
 gg.clearResults()
-gg.searchNumber('-1~148',4,false,2^29,v1.address-0x3FC,v1.address)
+gg.searchNumber('-1~148',4,false,2^29,v1-0x3FC,v1)
 return gg.getResults(gg.getResultsCount())
