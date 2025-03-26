@@ -6,7 +6,7 @@ local v0 = gg.getResults(gg.getResultsCount())
 local v1 = (function()
   for i = 1, #v0 do
     gg.clearResults()
-    gg.searchNumber('-257~256;-257~~256;-257~~256;0~~0;0::17',4,false,2^29,v0[i].address+0x500,v0[i].address+0x5ff)
+    gg.searchNumber('-257~256;-257~~256;-257~~256;0~~0;0::17',4,false,2^29,v0[i].address+0x400,v0[i].address+0xfff)
     gg.refineNumber('-32769~~32768',4)
     if gg.getResultsCount() >= 1 then
       return gg.getValues({{address=gg.getResults(1)[1].address - ofs, flags=4}})
