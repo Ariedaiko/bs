@@ -1,4 +1,4 @@
-gg.searchNumber('0'..(';-1~148'):rep(63)..'::253',4,false,2^29,base+0x3A0000,base+0x3E0000)
+gg.searchNumber('0'..(';-1~148'):rep(63)..'::253',4,false,2^29,base+0x3E0000,base+0x4a0000)
 gg.refineNumber('0;-1~148;-1~148::9',4)
 gg.refineNumber('0;-1~148;0::9',4,false,2^28)
 gg.refineNumber('0',4,false,2^28)
