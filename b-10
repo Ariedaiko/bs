@@ -1,7 +1,6 @@
-gg.searchNumber('0'..(';-1~148'):rep(63)..'::253',4,false,2^29,base+0x3E0000,base+0x4a0000)
-gg.refineNumber('0;-1~148;-1~148::9',4)
-gg.refineNumber('0;-1~148;0::9',4,false,2^28)
-gg.refineNumber('0',4,false,2^28)
+gg.searchNumber(('-1;'):rep(10)..'0~256;0::125',4,false,2^29,base+0x3E0000,base+0x420000)
+gg.refineNumber('-1;0~256;0::9',4)
+gg.refineNumber('-1',4)
 local res = gg.getResults(gg.getResultsCount())
 if #res <= 0 then
   x.r('mss1','b[10]_1')
@@ -9,12 +8,8 @@ end
 gg.clearResults()
 local v1 = (function()
   for i = 1, #res do
-    if gg.getValues({{address=res[i].address+0x404,flags=4}})[1].value == 0 then
-      if gg.getValues({{address=res[i].address+0x400,flags=4}})[1].value == -1 then
-        return {res[i].address+0x400,i}
-      else
-        return {res[i].address+0x3FC,i}
-      end
+    if gg.getValues({{address=res[i].address-0x400,flags=4}})[1].value == 0 then
+      return {res[i].address-0x3FC,i}
     end
   end
 end)()
@@ -22,5 +17,7 @@ if not v1 then
   x.r('mss1','b[10]_2')
 end
 gg.clearResults()
-gg.searchNumber('-1~148',4,false,2^29,res[v1[2]].address,v1[1])
+gg.searchNumber('-1~148',4,false,2^29,v1[1],res[v1[2]].address)
 return gg.getResults(gg.getResultsCount())
+
+
