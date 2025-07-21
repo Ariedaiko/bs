@@ -1,5 +1,5 @@
 gg.clearResults()
-gg.searchNumber(("-32767~32767;"):rep(4)..("-32767~~32767;"):rep(4)..("-32767~32767;"):rep(2).."-32767~32767::41", 4, false, 536870912, base+0x330000, base+0x3700000)
+gg.searchNumber(("-32767~32767;"):rep(4)..("-32767~~32767;"):rep(4)..("-32767~32767;"):rep(2).."-32767~32767::41", 4, false, 536870912, base+0x350000, base+0x400000)
 gg.refineNumber("-32767~~32767", 4)
 local res = gg.getResults(gg.getResultsCount())
 if #res <= 0 then
