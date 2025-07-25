@@ -1,34 +1,43 @@
 gg.clearResults()
-gg.searchNumber(("-32767~32767;"):rep(4)..("-32767~~32767;"):rep(4)..("-32767~32767;"):rep(2).."-32767~32767::41", 4, false, 536870912, base+0x350000, base+0x400000)
-gg.refineNumber("-32767~~32767", 4)
-local res = gg.getResults(gg.getResultsCount())
-if #res <= 0 then
+local v1={}
+gg.searchNumber(('-32767~32767;'):rep(4)..('-32767~~32767;'):rep(4)..('-32767~32767;'):rep(2)..'-32767~32767::41',4,false,2^29,base+0x330000,base+0x420000)
+gg.refineNumber("-32767~~32767",4)
+local res=gg.getResults(gg.getResultsCount())
+if#res<=0 then
   x.r('ms9','evo')
 end
 gg.clearResults()
-evo[1] = res[1].address+0x10
-evo[2] = gg.makeRequest('https://battlecats-db.com/unit/frm_4.html').content
+v1[1] = res[1].address+0x10
+v1[2] = gg.makeRequest('https://battlecats-db.com/unit/frm_4.html').content
 local count = 0
-for line in evo[2]:gmatch("([^\n]+)") do
+for line in v1[2]:gmatch("([^\n]+)") do
   count = count + 1
   if count == 30 then
-    evo[2] = line
+    v1[2] = line
     break
   end
 end
-evo[3] = gg.makeRequest('https://battlecats-db.com/unit/frm_3.html').content
-count = 0
-for line in evo[3]:gmatch("([^\n]+)") do
+v1[3] = gg.makeRequest('https://battlecats-db.com/unit/frm_3.html').content
+local count = 0
+for line in v1[3]:gmatch("([^\n]+)") do
   count = count + 1
   if count == 30 then
-    evo[3] = line
+    v1[3] = line
     break
   end
 end
-evo[4]={}
-local v2 = v2 or gg.makeRequest('https://battlecats-db.com/unit/frm_final.html').content
+v1[4]={}
+local v2 = gg.makeRequest('https://battlecats-db.com/unit/frm_final.html').content
+local count = 0
+for line in v2:gmatch("([^\n]+)") do
+  count = count + 1
+  if count == 30 then
+    v2=line
+    break
+  end
+end
 for o, f in v2:gmatch('u([0-9]+)%-([0-9]+).png') do
-  table.insert(evo[4], {address=char[3][1].address + (o-1)*0x4, flags=4, value=f-1})
+  table.insert(v1[4], {address=char[3][1].address + (o-1)*0x4, flags=4, value=f-1})
 end
-table.insert(evo[4], {address=char[3][1].address + 202*0x4, flags=4, value=1})
-return {evo[1],evo[2],evo[3],evo[4]}
+table.insert(v1[4], {address=char[3][1].address + 202*0x4, flags=4, value=1})
+return {v1[1],v1[2],v1[3],v1[4]}
