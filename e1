@@ -1,13 +1,21 @@
 gg.clearResults()
+gg.clearResults()
 local v1={}
-gg.searchNumber(('-32767~32767;'):rep(4)..('-32767~~32767;'):rep(4)..('-32767~32767;'):rep(2)..'-32767~32767::41',4,false,2^29,base+0x350000,base+0x400000)
+gg.searchNumber(('-32767~32767;'):rep(4)..('-32767~~32767;'):rep(4)..('-32767~32767;'):rep(2)..'-32767~32767::41',4,false,2^29,base+0x340000,base+0x3D0000)
 gg.refineNumber("-32767~~32767",4)
 local res=gg.getResults(gg.getResultsCount())
 if#res<=0 then
   x.r('ms9','evo')
 end
+for i = 1, #res do
+  gg.clearResults()
+  gg.searchNumber('h 0A 00 00 00 00 00 00 00',1,false,2^29,res[i].address-0x40,res[i].address)
+  if gg.getResultsCount()>=1 then
+    table.insert(v1,res[i].address+0x10)
+    break
+  end
+end
 gg.clearResults()
-v1[1] = res[1].address+0x10
 v1[2] = gg.makeRequest('https://battlecats-db.com/unit/frm_4.html').content
 local count = 0
 for line in v1[2]:gmatch("([^\n]+)") do
