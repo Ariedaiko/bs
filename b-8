@@ -1,9 +1,23 @@
 gg.clearResults()
-local v1=0x40360C
-gg.startFuzzy(4,base+v1,base+v1+0xC4)
-local v2=gg.getResults(gg.getResultsCount())
+gg.searchNumber('0;-2~2;-512~512;-512~512'..(';-255~~255'):rep(50)..'0::217',4,false,2^29,base+0x400000,base+0x420000)
+gg.refineNumber('-1~1;-512~512;-512~512;-512~512::13',4)
+gg.refineNumber('-10~~10',4)
+local v1=gg.getResults(gg.getResultsCount())
 gg.clearResults()
-if #v2 <= 0 then
-  x.r('ms4','b[8]')
+if #v1<=0 then
+  local v2=0x40360C
+  gg.clearResults()
+  gg.startFuzzy(4,base+v2,base+v2+0xC4)
+  local res=gg.getResults(gg.getResultsCount())
+  gg.clearResults()
+  if #res<=0 then
+    x.r('ms4','b[8]')
+  end
+  return res
+else
+  gg.clearResults()
+  gg.startFuzzy(4,v1[1].address+0x8,v1[1].address+0xCC)
+  local res=gg.getResults(gg.getResultsCount())
+  gg.clearResults()
+  return res
 end
-return v2
