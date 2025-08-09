@@ -1,0 +1,9 @@
+      gg.clearResults()
+      gg.searchNumber('0;-1;0;0;0;0;-1;0;0;0;0;-2~~1::45',4,false,2^29,base+0x3E0000,base+0x400000)
+      gg.refineNumber('-2~~1')
+      local res = gg.getResults(gg.getResultsCount())
+      if #res<=0 then
+        x.r('ms4','b[24]')
+      end
+      b[24] = gg.getValues({{address=res[1].address+0x98,flags=4}})[1]
+      gg.clearResults()
