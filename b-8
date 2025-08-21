@@ -1,6 +1,6 @@
 gg.clearResults()
-gg.searchNumber('0;-2~2;-512~512;-512~512'..(';-255~~255'):rep(50)..'0::217',4,false,2^29,base+0x400000,base+0x420000)
-gg.refineNumber('-1~1;-512~512;-512~512;-512~512::13',4)
+gg.searchNumber('0;-5~5;-512~512;-512~512'..(';-255~~255'):rep(50)..'0::217',4,false,2^29,base+0x200000,base+0x600000)
+gg.refineNumber('-5~5;-512~512;-512~512;-512~512::13',4)
 gg.refineNumber('-10~~10',4)
 local v1=gg.getResults(gg.getResultsCount())
 gg.clearResults()
