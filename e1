@@ -27,17 +27,17 @@ for line in v1[3]:gmatch("([^\n]+)") do
   end
 end
 v1[4]={}
-local v2 = gg.makeRequest('https://battlecats-db.com/unit/frm_final.html').content
+local v2 = gg.makeRequest('https://battlecats-db.com/unit/r_all.html').content
 local count = 0
 for line in v2:gmatch("([^\n]+)") do
   count = count + 1
-  if count == 30 then
+  if count == 35 then
     v2=line
     break
   end
 end
-for o, f in v2:gmatch('u([0-9]+)%-([0-9]+).png') do
-  table.insert(v1[4], {address=char[3][1].address + (o-1)*0x4, flags=4, value=f-1})
+local v0={}
+for a in v2:gmatch("u([0-9]+)%-([0-9]+).png") do
+  a=tonumber(a);v0[a]=(v0[a]or 0)+1;v1[4][a]={address=char[3][1].address+(a-1)*0x4,flags=4,value=v0[a]-1}
 end
-table.insert(v1[4], {address=char[3][1].address + 202*0x4, flags=4, value=1})
 return {v1[1],v1[2],v1[3],v1[4]}
