@@ -1,15 +1,14 @@
 gg.clearResults()
-gg.searchNumber('h 02 00 00 00 03 00 00 00 04 00 00 00',4,false,2^29,base+0x3E0000,base+0x400000)
-gg.refineNumber('2',1)
-local subad = gg.getResults(1)[1].address
+gg.searchNumber('-1;0;0;0;0;-1;0;0;0;0;0~30::41',4,false,2^29,base+0x3E0000,base+0x400000)
+local res = gg.getResults(gg.getResultsCount())
 gg.clearResults()
-if not subad then
+if #res <= 0 then
   x.r('ms4','b[24]_1')
 end
-gg.searchNumber('h E8 03 00 00 10 0E 00 00 E8 03 00 00',4,false,2^29,subad,subad+0xff)
-subad = gg.getResults(1)[1].address
+gg.searchNumber('h E8 03 00 00 10 0E 00 00 E8 03 00 00',4,false,2^29,res[#res].address,res[#res].address+0x1ff)
+local res = gg.getResults(gg.getResultsCount())
 gg.clearResults()
-if not subad then
+if #res <= 0 then
   x.r('ms4','b[24]_2')
 end
-return gg.getValues({{address=subad-0x98,flags=4}})[1]
+return gg.getValues({{address=res[1].address-0x98,flags=4}})[1]
